@@ -22,6 +22,17 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
 
   const contactLinks = [
     {
+      label: 'Email',
+      value: 'alwinsuhas07@gmail.com',
+      href: 'mailto:alwinsuhas07@gmail.com',
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M22 7l-10 7L2 7" />
+        </svg>
+      ),
+    },
+    {
       label: 'WhatsApp',
       value: '+91 7483858421',
       href: 'https://wa.me/917483858421',
