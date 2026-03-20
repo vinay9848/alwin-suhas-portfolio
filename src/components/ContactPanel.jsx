@@ -9,7 +9,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
     let raf
     const tick = () => {
       const p = scrollProgress?.current ?? 0
-      const newOpacity = Math.max(0, Math.min(1, (p - 0.82) * 5.5))
+      const newOpacity = Math.max(0, Math.min(1, (p - 0.72) * 5.5))
       setOpacity(newOpacity)
       setVisible(newOpacity > 0.01)
       raf = requestAnimationFrame(tick)

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const sections = ['Intro', 'Showreel', 'Work', 'About', 'Contact']
+const sections = ['Intro', 'Showreel', 'Work', 'Contact']
 
 export default function SectionIndicator({ scrollProgress }) {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -9,7 +9,7 @@ export default function SectionIndicator({ scrollProgress }) {
     let raf
     const tick = () => {
       const p = scrollProgress?.current ?? 0
-      setActiveIndex(Math.min(4, Math.floor(p * 5)))
+      setActiveIndex(Math.min(3, Math.floor(p * 4)))
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
