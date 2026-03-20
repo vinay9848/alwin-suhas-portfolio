@@ -26,8 +26,8 @@ export const projects = [
 ]
 
 export const services = [
-  'Film Cinematography',
-  'Commercial Cinematography',
+  'Film Assistant Cinematography',
+  'Commercial Assistant Cinematography',
   'Brand Films',
   'Event Shoots',
   'Music Videos',
