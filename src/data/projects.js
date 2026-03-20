@@ -2,7 +2,7 @@ export const projects = [
   {
     id: 1,
     name: 'Veera Dheera Sooran',
-    type: 'Short Film',
+    type: 'Film',
     year: '2024',
     role: 'Cinematographer',
     tools: ['Cinema Camera', 'Prime Lenses', 'DaVinci Resolve'],
@@ -14,7 +14,7 @@ export const projects = [
   {
     id: 2,
     name: 'Kara',
-    type: 'Short Film',
+    type: 'Film',
     year: '2024',
     role: 'Cinematographer',
     tools: ['Cinema Camera', 'Gimbal', 'Color Grading'],
@@ -26,7 +26,7 @@ export const projects = [
 ]
 
 export const services = [
-  'Short Film Cinematography',
+  'Film Cinematography',
   'Commercial Cinematography',
   'Brand Films',
   'Event Shoots',
