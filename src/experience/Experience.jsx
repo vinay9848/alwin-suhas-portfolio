@@ -15,21 +15,22 @@ export default function Experience({ scrollProgress, scrollVelocity, onProjectCl
     <Canvas
       className="!fixed inset-0"
       camera={{
-        fov: isMobile ? 42 : 32,   // Wider FOV on mobile so scene isn't cropped
+        fov: isMobile ? 42 : 32,
         near: 0.1,
         far: 100,
         position: [1.8, 1.2, 4.5],
       }}
-      dpr={isMobile ? 1 : [1, 1.5]}  // Lock to 1x on mobile
+      dpr={isMobile ? 1 : [1, 1.5]}
       gl={{
-        antialias: !isMobile,         // Disable AA on mobile
+        antialias: !isMobile,
         toneMapping: 3,
-        toneMappingExposure: 1.4,
+        toneMappingExposure: 1.6,
         outputColorSpace: 'srgb',
         powerPreference: 'high-performance',
       }}
     >
-      <color attach="background" args={['#08090C']} />
+      {/* Warm cream background */}
+      <color attach="background" args={['#E8E2DA']} />
 
       <Suspense fallback={null}>
         <CameraRig scrollProgress={scrollProgress} scrollVelocity={scrollVelocity} />
@@ -39,18 +40,17 @@ export default function Experience({ scrollProgress, scrollVelocity, onProjectCl
         <ShowreelScreen scrollProgress={scrollProgress} />
         <ProjectCards scrollProgress={scrollProgress} onProjectClick={onProjectClick} />
 
-        {/* Skip postprocessing on mobile — saves a full extra pass */}
         {!isMobile && (
           <EffectComposer multisampling={0}>
             <Bloom
-              intensity={0.25}
-              luminanceThreshold={0.65}
+              intensity={0.15}
+              luminanceThreshold={0.8}
               luminanceSmoothing={0.4}
               mipmapBlur
             />
             <Vignette
-              offset={0.25}
-              darkness={0.45}
+              offset={0.3}
+              darkness={0.25}
               blendFunction={BlendFunction.NORMAL}
             />
           </EffectComposer>

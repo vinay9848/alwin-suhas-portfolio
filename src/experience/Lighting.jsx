@@ -2,50 +2,58 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 /**
- * Cinematic 3-light setup. Mobile gets simpler lighting (no flicker calc).
+ * Warm studio lighting — brighter ambient, warm key, copper accents.
+ * Dark camera model pops against the light environment.
  */
 export default function Lighting({ isMobile }) {
-  const rimRef = useRef()
+  const accentRef = useRef()
 
   useFrame((state) => {
-    if (rimRef.current && !isMobile) {
-      const flicker = Math.sin(state.clock.elapsedTime * 3.7) * 0.15 +
-        Math.sin(state.clock.elapsedTime * 7.1) * 0.05
-      rimRef.current.intensity = 4.0 + flicker
+    if (accentRef.current && !isMobile) {
+      const flicker = Math.sin(state.clock.elapsedTime * 3.7) * 0.08
+      accentRef.current.intensity = 2.0 + flicker
     }
   })
 
   return (
     <>
-      <ambientLight color="#1a1a2e" intensity={isMobile ? 0.25 : 0.15} />
+      {/* Higher ambient — light environment needs it */}
+      <ambientLight color="#F5EDE0" intensity={isMobile ? 0.8 : 0.6} />
 
-      {/* KEY — warm white */}
+      {/* KEY — warm golden, from upper-right */}
       <spotLight
         position={[4, 6, 3]}
-        angle={0.4}
+        angle={0.45}
         penumbra={0.8}
-        intensity={isMobile ? 6 : 8}
-        color="#FFF5E6"
+        intensity={isMobile ? 4 : 5}
+        color="#FFF0D0"
       />
 
-      {/* RIM — cool blue */}
+      {/* RIM — cool blue for contrast on metals */}
       <spotLight
-        ref={rimRef}
+        ref={accentRef}
         position={[-5, 4, -4]}
         angle={0.5}
         penumbra={0.6}
-        intensity={4}
-        color="#4A7CFF"
+        intensity={isMobile ? 2 : 3}
+        color="#6A8FC0"
       />
 
-      {/* FILL — subtle front (skip on mobile, ambient covers it) */}
-      {!isMobile && (
-        <directionalLight
-          position={[0, 2, 6]}
-          intensity={0.4}
-          color="#C0C8D8"
-        />
-      )}
+      {/* FILL — soft warm from front */}
+      <directionalLight
+        position={[0, 3, 6]}
+        intensity={isMobile ? 0.6 : 0.5}
+        color="#F8ECD8"
+      />
+
+      {/* Bottom bounce — warm, like light reflecting off the floor */}
+      <pointLight
+        position={[0, 0.2, 0]}
+        intensity={0.3}
+        color="#E8D8C0"
+        distance={8}
+        decay={2}
+      />
     </>
   )
 }

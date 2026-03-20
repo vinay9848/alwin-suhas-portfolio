@@ -9,8 +9,7 @@ export default function SectionIndicator({ scrollProgress }) {
     let raf
     const tick = () => {
       const p = scrollProgress?.current ?? 0
-      const index = Math.min(4, Math.floor(p * 5))
-      setActiveIndex(index)
+      setActiveIndex(Math.min(4, Math.floor(p * 5)))
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
@@ -24,14 +23,14 @@ export default function SectionIndicator({ scrollProgress }) {
           <div
             className="w-1.5 h-1.5 rounded-full transition-all duration-500"
             style={{
-              background: i === activeIndex ? '#6C7CFF' : '#1A1D28',
-              boxShadow: i === activeIndex ? '0 0 8px rgba(108,124,255,0.4)' : 'none',
+              background: i === activeIndex ? '#B07C4F' : '#D0C8BC',
+              boxShadow: i === activeIndex ? '0 0 6px rgba(176,124,79,0.3)' : 'none',
             }}
           />
           <span
             className="font-mono text-[8px] tracking-wider uppercase transition-all duration-500"
             style={{
-              color: i === activeIndex ? '#6C7CFF' : '#505560',
+              color: i === activeIndex ? '#B07C4F' : '#9A9A9F',
               opacity: i === activeIndex ? 1 : 0,
               transform: i === activeIndex ? 'translateX(0)' : 'translateX(-4px)',
             }}

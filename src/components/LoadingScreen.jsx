@@ -7,16 +7,12 @@ const taglines = [
   'Entering Cinematic Space',
 ]
 
-/**
- * Cinematic loading screen — line animation, percentage, rotating taglines.
- */
 export default function LoadingScreen({ loaded }) {
   const [percent, setPercent] = useState(0)
   const [taglineIndex, setTaglineIndex] = useState(0)
   const [visible, setVisible] = useState(true)
   const intervalRef = useRef(null)
 
-  // Animate percentage
   useEffect(() => {
     const target = loaded ? 100 : 85
     intervalRef.current = setInterval(() => {
@@ -32,7 +28,6 @@ export default function LoadingScreen({ loaded }) {
     return () => clearInterval(intervalRef.current)
   }, [loaded])
 
-  // Cycle taglines
   useEffect(() => {
     const timer = setInterval(() => {
       setTaglineIndex((prev) => (prev + 1) % taglines.length)
@@ -40,7 +35,6 @@ export default function LoadingScreen({ loaded }) {
     return () => clearInterval(timer)
   }, [])
 
-  // Fade out when loaded
   useEffect(() => {
     if (loaded && percent >= 100) {
       const timer = setTimeout(() => setVisible(false), 600)
@@ -56,10 +50,10 @@ export default function LoadingScreen({ loaded }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Name */}
+          {/* Name — dark on cream */}
           <motion.p
             className="font-display text-xs md:text-sm tracking-[0.4em] md:tracking-[0.5em] uppercase mb-10 md:mb-16"
-            style={{ color: '#505560' }}
+            style={{ color: '#9A9A9F' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
@@ -67,12 +61,15 @@ export default function LoadingScreen({ loaded }) {
             Alwin Suhas
           </motion.p>
 
-          {/* Loading line */}
+          {/* Loading line — copper */}
           <div className="relative w-[140px] md:w-[200px] h-px mb-8 md:mb-10">
-            <div className="absolute inset-0 bg-[#1A1D28]" />
+            <div className="absolute inset-0" style={{ background: '#D8D0C4' }} />
             <motion.div
-              className="absolute inset-y-0 left-0 bg-gradient-to-r from-transparent via-[#E8E6E3] to-transparent"
-              style={{ width: `${percent}%` }}
+              className="absolute inset-y-0 left-0"
+              style={{
+                width: `${percent}%`,
+                background: 'linear-gradient(90deg, transparent, #B07C4F, transparent)',
+              }}
               transition={{ duration: 0.1 }}
             />
           </div>
@@ -80,7 +77,7 @@ export default function LoadingScreen({ loaded }) {
           {/* Percentage */}
           <motion.p
             className="font-mono text-xs tracking-[0.3em]"
-            style={{ color: '#8A8F98' }}
+            style={{ color: '#5A5A62' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -89,12 +86,12 @@ export default function LoadingScreen({ loaded }) {
           </motion.p>
 
           {/* Rotating tagline */}
-          <div className="mt-12 h-4 overflow-hidden">
+          <div className="mt-10 md:mt-12 h-4 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.p
                 key={taglineIndex}
-                className="font-mono text-[10px] tracking-[0.3em] uppercase"
-                style={{ color: '#505560' }}
+                className="font-mono text-[9px] md:text-[10px] tracking-[0.3em] uppercase"
+                style={{ color: '#9A9A9F' }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}

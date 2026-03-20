@@ -2,21 +2,18 @@ import { useRef, useMemo, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { projects } from '../data/projects'
-import { mapRange, createGradientTexture } from '../utils/helpers'
+import { mapRange } from '../utils/helpers'
 
-// Pre-allocated — zero GC in render loop
 const _scaleVec = new THREE.Vector3()
 
 /**
- * Floating project cards — NO Html components for performance.
- * Labels rendered as part of the gradient texture instead.
+ * Project cards with richer gradients — visible on light background.
  */
 export default function ProjectCards({ scrollProgress, onProjectClick }) {
   const groupRef = useRef()
   const cardsRef = useRef([])
   const [hoveredIndex, setHoveredIndex] = useState(null)
 
-  // Pre-compute gradient textures with project name baked in
   const textures = useMemo(() => {
     return projects.map((p) => {
       const canvas = document.createElement('canvas')
@@ -24,39 +21,38 @@ export default function ProjectCards({ scrollProgress, onProjectClick }) {
       canvas.height = 288
       const ctx = canvas.getContext('2d')
 
-      // Gradient background
+      // Richer gradient
       const gradient = ctx.createLinearGradient(0, 0, 512, 288)
       gradient.addColorStop(0, p.gradient[0])
       gradient.addColorStop(1, p.gradient[1])
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, 512, 288)
 
-      // Subtle noise
+      // Light noise
       const imageData = ctx.getImageData(0, 0, 512, 288)
       for (let i = 0; i < imageData.data.length; i += 16) {
-        const noise = (Math.random() - 0.5) * 12
+        const noise = (Math.random() - 0.5) * 10
         imageData.data[i] += noise
         imageData.data[i + 1] += noise
         imageData.data[i + 2] += noise
       }
       ctx.putImageData(imageData, 0, 0)
 
-      // Darken bottom for text readability
-      const overlay = ctx.createLinearGradient(0, 160, 0, 288)
+      // Dark overlay for text
+      const overlay = ctx.createLinearGradient(0, 140, 0, 288)
       overlay.addColorStop(0, 'rgba(0,0,0,0)')
-      overlay.addColorStop(1, 'rgba(0,0,0,0.6)')
+      overlay.addColorStop(1, 'rgba(0,0,0,0.55)')
       ctx.fillStyle = overlay
       ctx.fillRect(0, 0, 512, 288)
 
       // Project name
       ctx.font = '500 22px "Space Grotesk", sans-serif'
-      ctx.fillStyle = 'rgba(255,255,255,0.9)'
+      ctx.fillStyle = 'rgba(255,255,255,0.95)'
       ctx.textAlign = 'left'
       ctx.fillText(p.name, 24, 258)
 
-      // Type + year
       ctx.font = '400 11px "JetBrains Mono", monospace'
-      ctx.fillStyle = 'rgba(255,255,255,0.5)'
+      ctx.fillStyle = 'rgba(255,255,255,0.6)'
       ctx.fillText(`${p.type} · ${p.year}`, 24, 278)
 
       const tex = new THREE.CanvasTexture(canvas)
@@ -74,10 +70,12 @@ export default function ProjectCards({ scrollProgress, onProjectClick }) {
     { x: 3.0, y: 1.0, z: -2.2, ry: -0.2 },
   ], [])
 
-  const frameMat = useMemo(() => new THREE.MeshBasicMaterial({
-    color: '#1A1D28',
+  const frameMat = useMemo(() => new THREE.MeshStandardMaterial({
+    color: '#2A2A30',
+    metalness: 0.6,
+    roughness: 0.25,
     transparent: true,
-    opacity: 0.5,
+    opacity: 0.7,
   }), [])
 
   useFrame((state) => {
@@ -92,7 +90,6 @@ export default function ProjectCards({ scrollProgress, onProjectClick }) {
     groupRef.current.visible = vis > 0.01
     groupRef.current.position.x = mapRange(p, 0.35, 0.72, 1.5, -1.5)
 
-    // Float + hover scale per card
     for (let i = 0; i < cardsRef.current.length; i++) {
       const card = cardsRef.current[i]
       if (!card) continue
@@ -128,24 +125,19 @@ export default function ProjectCards({ scrollProgress, onProjectClick }) {
               onProjectClick?.(project)
             }}
           >
-            {/* Card with baked text */}
             <mesh>
               <planeGeometry args={[1.4, 0.8]} />
               <meshBasicMaterial map={textures[i]} />
             </mesh>
-
-            {/* Subtle frame */}
             <mesh material={frameMat} position={[0, 0, -0.008]}>
               <planeGeometry args={[1.46, 0.86]} />
             </mesh>
-
-            {/* Top accent line */}
             <mesh position={[0, 0.41, 0.003]}>
               <planeGeometry args={[1.4, 0.003]} />
               <meshBasicMaterial
-                color={project.gradient[0]}
+                color="#B07C4F"
                 transparent
-                opacity={hoveredIndex === i ? 0.9 : 0.35}
+                opacity={hoveredIndex === i ? 0.8 : 0.3}
               />
             </mesh>
           </group>

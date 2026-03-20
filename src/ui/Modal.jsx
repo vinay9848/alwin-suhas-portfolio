@@ -13,13 +13,12 @@ export default function ProjectModal({ project, isOpen, onClose, isMobile }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
-          {/* Backdrop */}
+          {/* Warm backdrop */}
           <div
-            className="absolute inset-0 bg-[#08090C]/90 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#F2EDE7]/85 backdrop-blur-sm"
             onClick={onClose}
           />
 
-          {/* Modal — fullscreen on mobile */}
           <motion.div
             className={`relative z-10 glass-panel overflow-y-auto ${
               isMobile
@@ -31,11 +30,10 @@ export default function ProjectModal({ project, isOpen, onClose, isMobile }) {
             exit={{ scale: isMobile ? 1 : 0.95, y: isMobile ? 30 : 20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Close */}
             <button
               onClick={onClose}
               className={`absolute top-4 right-4 flex items-center justify-center
-                         text-[#505560] hover:text-white transition-colors ${
+                         text-[#9A9A9F] hover:text-[#1A1A1E] transition-colors ${
                 isMobile ? 'w-10 h-10' : 'w-8 h-8'
               }`}
               style={{ cursor: 'pointer' }}
@@ -45,7 +43,6 @@ export default function ProjectModal({ project, isOpen, onClose, isMobile }) {
               </svg>
             </button>
 
-            {/* Video placeholder */}
             <div
               className="w-full aspect-video mb-4 md:mb-6 flex items-center justify-center rounded-sm"
               style={{
@@ -66,29 +63,27 @@ export default function ProjectModal({ project, isOpen, onClose, isMobile }) {
               </div>
             </div>
 
-            {/* Info */}
             <h3 className={`font-display font-light tracking-wide ${
               isMobile ? 'text-lg' : 'text-xl md:text-2xl'
-            }`} style={{ color: '#E8E6E3' }}>
+            }`} style={{ color: '#1A1A1E' }}>
               {project.name}
             </h3>
-            <p className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: project.gradient?.[0] || '#6C7CFF' }}>
+            <p className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#B07C4F' }}>
               {project.type} &middot; {project.year} &middot; {project.role}
             </p>
 
             <p className={`font-body mt-3 md:mt-4 leading-relaxed ${
               isMobile ? 'text-xs' : 'text-sm'
-            }`} style={{ color: '#8A8F98' }}>
+            }`} style={{ color: '#5A5A62' }}>
               {project.description}
             </p>
 
-            {/* Tools */}
             <div className="flex flex-wrap gap-1.5 md:gap-2 mt-4 md:mt-5">
               {project.tools?.map((tool) => (
                 <span
                   key={tool}
-                  className="font-mono text-[7px] md:text-[8px] tracking-wider uppercase px-2 md:px-3 py-1 md:py-1.5 border border-white/[0.06]"
-                  style={{ color: '#505560' }}
+                  className="font-mono text-[7px] md:text-[8px] tracking-wider uppercase px-2 md:px-3 py-1 md:py-1.5 border border-[#1A1A1E]/[0.08]"
+                  style={{ color: '#9A9A9F' }}
                 >
                   {tool}
                 </span>
