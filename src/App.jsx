@@ -8,7 +8,6 @@ import AboutSection from './components/AboutSection'
 import ProjectModal from './ui/Modal'
 import ScrollProgress from './ui/ScrollProgress'
 import SectionIndicator from './ui/SectionIndicator'
-import NavArrows from './ui/NavArrows'
 import LoadingScreen from './components/LoadingScreen'
 import CustomCursor from './components/CustomCursor'
 import { useScrollAnimation } from './hooks/useScrollAnimation'
@@ -16,7 +15,7 @@ import { useMobile } from './hooks/useMobile'
 
 function App() {
   const isMobile = useMobile()
-  const { progress, velocity, setActive, nextSection, prevSection } = useScrollAnimation({
+  const { progress, velocity, setActive } = useScrollAnimation({
     totalSections: 5,
     damping: 0.08,
   })
@@ -67,13 +66,6 @@ function App() {
           <HeroText scrollProgress={progress} isMobile={isMobile} />
           <AboutSection scrollProgress={progress} isMobile={isMobile} />
           <ContactPanel scrollProgress={progress} isMobile={isMobile} />
-
-          {/* Nav arrows — always visible, both mobile & desktop */}
-          <NavArrows
-            scrollProgress={progress}
-            onPrev={prevSection}
-            onNext={nextSection}
-          />
 
           {!isMobile && (
             <>
