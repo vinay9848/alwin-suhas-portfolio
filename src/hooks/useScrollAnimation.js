@@ -11,20 +11,36 @@ export function useScrollAnimation({ totalSections = 5, damping = 0.08 } = {}) {
     active.current = val
   }, [])
 
-  // Programmatic jump to a section (0-based index)
-  const goToSection = useCallback((index) => {
-    targetProgress.current = Math.max(0, Math.min(1, index / totalSections))
+  // Section start points: [0, 0.2, 0.4, 0.6, 0.8]
+  const sectionStart = useCallback((index) => {
+    return Math.max(0, Math.min(1, index / totalSections))
   }, [totalSections])
 
+  const goToSection = useCallback((index) => {
+    targetProgress.current = sectionStart(index)
+  }, [sectionStart])
+
   const nextSection = useCallback(() => {
-    const current = Math.floor(progress.current * totalSections)
-    goToSection(Math.min(totalSections, current + 1))
-  }, [totalSections, goToSection])
+    // Find which section we're currently in, then go to start of next
+    const p = progress.current
+    const currentIndex = Math.min(totalSections - 1, Math.floor(p * totalSections + 0.01))
+    const nextIndex = Math.min(totalSections - 1, currentIndex + 1)
+    targetProgress.current = sectionStart(nextIndex)
+  }, [totalSections, sectionStart])
 
   const prevSection = useCallback(() => {
-    const current = Math.ceil(progress.current * totalSections)
-    goToSection(Math.max(0, current - 1))
-  }, [totalSections, goToSection])
+    // If we're past the start of current section, go to its start first
+    // If we're at the start, go to previous section's start
+    const p = progress.current
+    const currentIndex = Math.floor(p * totalSections + 0.01)
+    const currentStart = sectionStart(currentIndex)
+    // If we're more than 2% into the section, snap to its start
+    if (p - currentStart > 0.02) {
+      targetProgress.current = currentStart
+    } else {
+      targetProgress.current = sectionStart(Math.max(0, currentIndex - 1))
+    }
+  }, [totalSections, sectionStart])
 
   useEffect(() => {
     const handleWheel = (e) => {
