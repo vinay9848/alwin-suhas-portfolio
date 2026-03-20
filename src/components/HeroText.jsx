@@ -21,12 +21,20 @@ export default function HeroText({ scrollProgress, isMobile }) {
   if (!visible) return null
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center pointer-events-none" style={{ opacity }}>
+    <div className={`fixed inset-0 z-10 flex pointer-events-none ${
+      isMobile ? 'items-end pb-10' : 'items-center'
+    }`} style={{ opacity }}>
       <div className={`pointer-events-auto ${
         isMobile
-          ? 'mx-auto text-center px-5 max-w-sm'
+          ? 'mx-auto text-center px-5 max-w-sm py-6 rounded-xl'
           : 'ml-auto mr-[6%] md:mr-[10%] text-right max-w-lg'
-      }`}>
+      }`}
+        style={isMobile ? {
+          background: 'rgba(255,255,255,0.85)',
+          backdropFilter: 'blur(16px)',
+          boxShadow: '0 4px 30px rgba(0,0,0,0.08)',
+        } : {}}
+      >
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
           {/* Copper accent line */}
           <motion.div
