@@ -113,9 +113,6 @@ export default function WorkSection({ scrollProgress, isMobile, onProjectClick }
                         {project.role}
                       </span>
                     </div>
-                    <p className="font-body text-xs mt-2 leading-relaxed" style={{ color: '#444' }}>
-                      {project.description}
-                    </p>
                     {/* View arrow */}
                     <div className="mt-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="font-mono text-[9px] tracking-[0.2em] uppercase" style={{ color: '#B07C4F' }}>
