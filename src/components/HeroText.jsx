@@ -22,7 +22,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
 
   return (
     <div className={`fixed inset-0 z-10 flex pointer-events-none ${
-      isMobile ? 'items-end pb-[20vh]' : 'items-center'
+      isMobile ? 'items-end pb-4' : 'items-center'
     }`} style={{ opacity }}>
       <div className={`pointer-events-auto ${
         isMobile
@@ -30,9 +30,10 @@ export default function HeroText({ scrollProgress, isMobile }) {
           : 'ml-auto mr-[6%] md:mr-[10%] text-right max-w-lg'
       }`}
         style={isMobile ? {
-          background: 'rgba(255,255,255,0.85)',
-          backdropFilter: 'blur(16px)',
-          boxShadow: '0 4px 30px rgba(0,0,0,0.08)',
+          background: 'rgba(242,237,231,0.95)',
+          backdropFilter: 'blur(20px)',
+          boxShadow: '0 4px 30px rgba(0,0,0,0.1)',
+          border: '1px solid rgba(176,124,79,0.12)',
         } : {}}
       >
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
