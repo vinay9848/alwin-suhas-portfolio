@@ -70,7 +70,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.8 }}
           >
-            Cinematographer
+            Assistant Cinematographer
           </motion.p>
 
           {/* Quote */}
