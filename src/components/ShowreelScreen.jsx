@@ -119,8 +119,12 @@ export default function ShowreelScreen({ scrollProgress }) {
 
   return (
     <group ref={groupRef} position={[0, 2.8, -3]} visible={false}>
-      {/* Video screen */}
-      <mesh>
+      {/* Video screen — click opens Google Drive link */}
+      <mesh
+        onClick={() => window.open('https://drive.google.com/file/d/1aJ1gDLeAa4HZJJWnUY2yP40V8Y1gsgsb/view?pli=1', '_blank')}
+        onPointerOver={() => document.body.style.cursor = 'pointer'}
+        onPointerOut={() => document.body.style.cursor = ''}
+      >
         <planeGeometry args={[4.0, 2.25]} />
         <meshBasicMaterial map={videoReady ? videoTexture : fallbackTex} />
       </mesh>
