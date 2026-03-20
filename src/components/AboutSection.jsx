@@ -51,7 +51,9 @@ export default function AboutSection({ scrollProgress, isMobile }) {
         isMobile
           ? 'inset-x-0 bottom-8 px-6 text-center'
           : 'right-[6%] md:right-[10%] top-1/2 -translate-y-1/2 max-w-sm text-right'
-      }`}>
+      }`}
+        style={{ background: 'rgba(242,237,231,0.75)', backdropFilter: 'blur(12px)', padding: isMobile ? '20px' : '28px', borderRadius: '4px' }}
+      >
         <div className={`mb-4 md:mb-8`}>
           <div className={`mb-2 md:mb-3 h-px w-10 md:w-12 bg-gradient-to-r from-[#B07C4F] to-transparent ${
             isMobile ? 'mx-auto' : 'ml-auto'
@@ -69,7 +71,7 @@ export default function AboutSection({ scrollProgress, isMobile }) {
               }`} style={{ color: '#1A1A1E' }}>
                 {stat.value}
               </p>
-              <p className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#9A9A9F' }}>
+              <p className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#6A6A72' }}>
                 {stat.label}
               </p>
             </div>
@@ -81,10 +83,10 @@ export default function AboutSection({ scrollProgress, isMobile }) {
             <div key={skill.name} className="flex items-center gap-2 md:gap-3">
               <span className={`font-mono text-[8px] md:text-[9px] tracking-wider uppercase text-right ${
                 isMobile ? 'w-20' : 'w-28'
-              }`} style={{ color: '#5A5A62' }}>
+              }`} style={{ color: '#3A3A42' }}>
                 {skill.name}
               </span>
-              <div className="flex-1 h-px relative" style={{ background: '#D0C8BC' }}>
+              <div className="flex-1 h-px relative" style={{ background: '#B8AFA2' }}>
                 <div
                   className="absolute inset-y-0 left-0 transition-all duration-1000"
                   style={{
@@ -99,7 +101,7 @@ export default function AboutSection({ scrollProgress, isMobile }) {
 
         <p className={`font-body leading-relaxed ${
           isMobile ? 'text-xs text-center' : 'text-sm text-right'
-        }`} style={{ color: '#5A5A62' }}>
+        }`} style={{ color: '#3A3A42' }}>
           Crafting visual narratives through light,
           {!isMobile && <br />}
           {isMobile ? ' ' : ''}movement, and intentional composition.

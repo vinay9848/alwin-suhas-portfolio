@@ -73,7 +73,9 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
         isMobile
           ? 'inset-x-0 bottom-6 px-6 text-center'
           : 'left-[6%] md:left-[10%] top-1/2 -translate-y-1/2 max-w-sm'
-      }`}>
+      }`}
+        style={{ background: 'rgba(242,237,231,0.75)', backdropFilter: 'blur(12px)', padding: isMobile ? '20px' : '28px', borderRadius: '4px' }}
+      >
         <div className={`mb-4 md:mb-8`}>
           <div className={`mb-2 md:mb-3 h-px w-10 md:w-12 bg-gradient-to-r from-[#4A6FA5] to-transparent ${
             isMobile ? 'mx-auto' : ''
@@ -88,7 +90,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
         }`} style={{ color: '#1A1A1E' }}>
           Available for projects.
         </h2>
-        <p className={`font-body mb-4 md:mb-8 ${isMobile ? 'text-xs' : 'text-sm'}`} style={{ color: '#9A9A9F' }}>
+        <p className={`font-body mb-4 md:mb-8 ${isMobile ? 'text-xs' : 'text-sm'}`} style={{ color: '#6A6A72' }}>
           Let's create something cinematic.
         </p>
 
@@ -99,8 +101,8 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
               href={link.href}
               target={link.label === 'Instagram' ? '_blank' : undefined}
               rel={link.label === 'Instagram' ? 'noopener noreferrer' : undefined}
-              className={`group flex items-center gap-3 border border-[#1A1A1E]/[0.08] bg-[#FDFBF8]/60
-                         hover:border-[#B07C4F]/30 hover:bg-[#FDFBF8]/90
+              className={`group flex items-center gap-3 border border-[#1A1A1E]/[0.15] bg-white/50
+                         hover:border-[#B07C4F]/40 hover:bg-white/80
                          transition-all duration-500 ${
                 isMobile ? 'py-2.5 px-3' : 'py-3 px-4'
               }`}
@@ -109,12 +111,12 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
                 {link.icon}
               </span>
               <div className="text-left">
-                <span className="font-mono text-[8px] tracking-[0.2em] uppercase block" style={{ color: '#9A9A9F' }}>
+                <span className="font-mono text-[8px] tracking-[0.2em] uppercase block" style={{ color: '#6A6A72' }}>
                   {link.label}
                 </span>
                 <span className={`font-body group-hover:text-[#1A1A1E] transition-colors duration-300 ${
                   isMobile ? 'text-xs' : 'text-sm'
-                }`} style={{ color: '#5A5A62' }}>
+                }`} style={{ color: '#3A3A42' }}>
                   {link.value}
                 </span>
               </div>
@@ -122,7 +124,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
           ))}
         </div>
 
-        <p className="font-mono text-[8px] md:text-[9px] tracking-[0.15em] uppercase mt-4 md:mt-6" style={{ color: '#9A9A9F' }}>
+        <p className="font-mono text-[8px] md:text-[9px] tracking-[0.15em] uppercase mt-4 md:mt-6" style={{ color: '#6A6A72' }}>
           {personalInfo.location} &middot; {personalInfo.experience}
         </p>
       </div>
