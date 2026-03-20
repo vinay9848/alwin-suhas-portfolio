@@ -18,9 +18,9 @@ export default function AboutSection({ scrollProgress, isMobile }) {
       if (newOpacity > 0.3) {
         const progress = Math.min(1, (newOpacity - 0.3) / 0.7)
         setCounts({
-          projects: Math.round(progress * 2),
+          projects: Math.round(progress * 3),
           clients: Math.round(progress * 2),
-          years: Math.round(progress * 2),
+          years: Math.round(progress * 3),
         })
       }
       raf = requestAnimationFrame(tick)
