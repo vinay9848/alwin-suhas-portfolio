@@ -83,7 +83,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 1.3 }}
           >
-            "Every frame tells a story."
+            "Life experience is always more important than technical knowledge." — Roger Deakins
           </motion.p>
 
           {/* Bottom line */}

@@ -62,12 +62,8 @@ export default function ProjectCards({ scrollProgress, onProjectClick }) {
   }, [])
 
   const cardPositions = useMemo(() => [
-    { x: -2.5, y: 1.8, z: -1.0, ry: 0.15 },
-    { x: -0.5, y: 2.3, z: -2.0, ry: -0.08 },
-    { x: 1.8, y: 1.5, z: -1.5, ry: -0.12 },
-    { x: -1.8, y: 0.8, z: -0.5, ry: 0.1 },
-    { x: 0.8, y: 0.5, z: -0.8, ry: -0.05 },
-    { x: 3.0, y: 1.0, z: -2.2, ry: -0.2 },
+    { x: -1.2, y: 1.8, z: -1.0, ry: 0.12 },
+    { x: 1.2, y: 1.8, z: -1.0, ry: -0.12 },
   ], [])
 
   const frameMat = useMemo(() => new THREE.MeshStandardMaterial({

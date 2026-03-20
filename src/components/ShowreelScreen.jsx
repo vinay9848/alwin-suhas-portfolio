@@ -39,11 +39,11 @@ export default function ShowreelScreen({ scrollProgress }) {
     ctx.font = '500 10px "JetBrains Mono", monospace'
     ctx.fillStyle = 'rgba(176,124,79,0.8)'
     ctx.textAlign = 'center'
-    ctx.fillText('SHOWREEL  2024', 256, 100)
+    ctx.fillText('VEERA DHEERA SOORAN', 256, 100)
 
     ctx.font = '400 8px "Inter", sans-serif'
     ctx.fillStyle = 'rgba(255,255,255,0.25)'
-    ctx.fillText('Click to play', 256, 200)
+    ctx.fillText('Short Film — Click to play', 256, 200)
 
     const tex = new THREE.CanvasTexture(canvas)
     tex.colorSpace = THREE.SRGBColorSpace

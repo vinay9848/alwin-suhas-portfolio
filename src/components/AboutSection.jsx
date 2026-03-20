@@ -18,9 +18,9 @@ export default function AboutSection({ scrollProgress, isMobile }) {
       if (newOpacity > 0.3) {
         const progress = Math.min(1, (newOpacity - 0.3) / 0.7)
         setCounts({
-          projects: Math.round(progress * 50),
-          clients: Math.round(progress * 20),
-          years: Math.round(progress * 3),
+          projects: Math.round(progress * 2),
+          clients: Math.round(progress * 2),
+          years: Math.round(progress * 2),
         })
       }
       raf = requestAnimationFrame(tick)
@@ -32,9 +32,9 @@ export default function AboutSection({ scrollProgress, isMobile }) {
   if (!visible) return null
 
   const stats = [
-    { value: `${counts.projects}+`, label: 'Projects' },
-    { value: `${counts.clients}+`, label: 'Clients' },
-    { value: `${counts.years}+`, label: 'Years' },
+    { value: `${counts.projects}`, label: 'Projects' },
+    { value: `${counts.clients}+`, label: 'Years' },
+    { value: `${counts.years}`, label: 'Films' },
   ]
 
   const skills = [
