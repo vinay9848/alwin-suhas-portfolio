@@ -52,7 +52,7 @@ export default function AboutSection({ scrollProgress, isMobile }) {
           ? 'inset-x-0 bottom-16 px-4 text-center'
           : 'right-[6%] md:right-[10%] top-1/2 -translate-y-1/2 max-w-sm text-right'
       }`}
-        style={{ background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(16px)', padding: isMobile ? '20px' : '28px', borderRadius: '6px', boxShadow: '0 4px 30px rgba(0,0,0,0.08)' }}
+        style={{ background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(20px)', padding: isMobile ? '20px' : '28px', borderRadius: '6px', boxShadow: '0 8px 40px rgba(0,0,0,0.12)' }}
       >
         <div className={`mb-4 md:mb-8`}>
           <div className={`mb-2 md:mb-3 h-px w-10 md:w-12 bg-gradient-to-r from-[#B07C4F] to-transparent ${
@@ -68,10 +68,10 @@ export default function AboutSection({ scrollProgress, isMobile }) {
             <div key={stat.label} className={isMobile ? 'text-center' : 'text-right'}>
               <p className={`font-display font-light tracking-tight ${
                 isMobile ? 'text-3xl' : 'text-3xl md:text-4xl'
-              }`} style={{ color: '#0A0A0E' }}>
+              }`} style={{ color: '#000000' }}>
                 {stat.value}
               </p>
-              <p className="font-mono text-[10px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#2A2A30' }}>
+              <p className="font-mono text-[10px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#111111' }}>
                 {stat.label}
               </p>
             </div>
@@ -83,10 +83,10 @@ export default function AboutSection({ scrollProgress, isMobile }) {
             <div key={skill.name} className="flex items-center gap-2 md:gap-3">
               <span className={`font-mono text-[10px] md:text-[9px] tracking-wider uppercase text-right ${
                 isMobile ? 'w-24' : 'w-28'
-              }`} style={{ color: '#1A1A20' }}>
+              }`} style={{ color: '#000000' }}>
                 {skill.name}
               </span>
-              <div className="flex-1 h-px relative" style={{ background: '#B8AFA2' }}>
+              <div className="flex-1 h-px relative" style={{ background: '#CCCCCC' }}>
                 <div
                   className="absolute inset-y-0 left-0 transition-all duration-1000"
                   style={{
@@ -101,7 +101,7 @@ export default function AboutSection({ scrollProgress, isMobile }) {
 
         <p className={`font-body leading-relaxed ${
           isMobile ? 'text-sm text-center' : 'text-sm text-right'
-        }`} style={{ color: '#1A1A20' }}>
+        }`} style={{ color: '#000000' }}>
           Crafting visual narratives through light,
           {!isMobile && <br />}
           {isMobile ? ' ' : ''}movement, and intentional composition.
