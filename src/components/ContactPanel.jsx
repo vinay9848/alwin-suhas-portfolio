@@ -74,7 +74,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
           ? 'inset-x-0 bottom-6 px-6 text-center'
           : 'left-[6%] md:left-[10%] top-1/2 -translate-y-1/2 max-w-sm'
       }`}
-        style={{ background: 'rgba(242,237,231,0.75)', backdropFilter: 'blur(12px)', padding: isMobile ? '20px' : '28px', borderRadius: '4px' }}
+        style={{ background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(16px)', padding: isMobile ? '20px' : '28px', borderRadius: '6px', boxShadow: '0 4px 30px rgba(0,0,0,0.08)' }}
       >
         <div className={`mb-4 md:mb-8`}>
           <div className={`mb-2 md:mb-3 h-px w-10 md:w-12 bg-gradient-to-r from-[#4A6FA5] to-transparent ${
@@ -87,10 +87,10 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
 
         <h2 className={`font-display font-light mb-1 md:mb-2 tracking-wide ${
           isMobile ? 'text-xl' : 'text-2xl md:text-3xl'
-        }`} style={{ color: '#1A1A1E' }}>
+        }`} style={{ color: '#0A0A0E' }}>
           Available for projects.
         </h2>
-        <p className={`font-body mb-4 md:mb-8 ${isMobile ? 'text-xs' : 'text-sm'}`} style={{ color: '#6A6A72' }}>
+        <p className={`font-body mb-4 md:mb-8 ${isMobile ? 'text-xs' : 'text-sm'}`} style={{ color: '#2A2A30' }}>
           Let's create something cinematic.
         </p>
 
@@ -111,12 +111,12 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
                 {link.icon}
               </span>
               <div className="text-left">
-                <span className="font-mono text-[8px] tracking-[0.2em] uppercase block" style={{ color: '#6A6A72' }}>
+                <span className="font-mono text-[8px] tracking-[0.2em] uppercase block" style={{ color: '#2A2A30' }}>
                   {link.label}
                 </span>
                 <span className={`font-body group-hover:text-[#1A1A1E] transition-colors duration-300 ${
                   isMobile ? 'text-xs' : 'text-sm'
-                }`} style={{ color: '#3A3A42' }}>
+                }`} style={{ color: '#1A1A20' }}>
                   {link.value}
                 </span>
               </div>
@@ -124,7 +124,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
           ))}
         </div>
 
-        <p className="font-mono text-[8px] md:text-[9px] tracking-[0.15em] uppercase mt-4 md:mt-6" style={{ color: '#6A6A72' }}>
+        <p className="font-mono text-[8px] md:text-[9px] tracking-[0.15em] uppercase mt-4 md:mt-6" style={{ color: '#2A2A30' }}>
           {personalInfo.location} &middot; {personalInfo.experience}
         </p>
       </div>
