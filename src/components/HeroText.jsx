@@ -22,7 +22,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
 
   return (
     <div className={`fixed inset-0 z-10 flex pointer-events-none ${
-      isMobile ? 'items-end pb-10' : 'items-center'
+      isMobile ? 'items-end pb-[20vh]' : 'items-center'
     }`} style={{ opacity }}>
       <div className={`pointer-events-auto ${
         isMobile
