@@ -5,6 +5,7 @@ import Experience from './experience/Experience'
 import HeroText from './components/HeroText'
 import ContactPanel from './components/ContactPanel'
 import AboutSection from './components/AboutSection'
+import WorkSection from './components/WorkSection'
 import ProjectModal from './ui/Modal'
 import ScrollProgress from './ui/ScrollProgress'
 import SectionIndicator from './ui/SectionIndicator'
@@ -64,6 +65,7 @@ function App() {
           />
 
           <HeroText scrollProgress={progress} isMobile={isMobile} />
+          <WorkSection scrollProgress={progress} isMobile={isMobile} onProjectClick={handleProjectClick} />
           <AboutSection scrollProgress={progress} isMobile={isMobile} />
           <ContactPanel scrollProgress={progress} isMobile={isMobile} />
 
