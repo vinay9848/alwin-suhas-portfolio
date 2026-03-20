@@ -1,10 +1,5 @@
 import { useRef, useEffect, useCallback } from 'react'
 
-/**
- * Fast, responsive scroll engine.
- * Higher damping + lower decay = snappier response.
- * No allocations in the hot loop.
- */
 export function useScrollAnimation({ totalSections = 5, damping = 0.08 } = {}) {
   const targetProgress = useRef(0)
   const progress = useRef(0)
@@ -16,11 +11,25 @@ export function useScrollAnimation({ totalSections = 5, damping = 0.08 } = {}) {
     active.current = val
   }, [])
 
+  // Programmatic jump to a section (0-based index)
+  const goToSection = useCallback((index) => {
+    targetProgress.current = Math.max(0, Math.min(1, index / totalSections))
+  }, [totalSections])
+
+  const nextSection = useCallback(() => {
+    const current = Math.floor(progress.current * totalSections)
+    goToSection(Math.min(totalSections, current + 1))
+  }, [totalSections, goToSection])
+
+  const prevSection = useCallback(() => {
+    const current = Math.ceil(progress.current * totalSections)
+    goToSection(Math.max(0, current - 1))
+  }, [totalSections, goToSection])
+
   useEffect(() => {
     const handleWheel = (e) => {
       if (!active.current) return
       e.preventDefault()
-      // Faster scroll sensitivity
       const delta = e.deltaY * 0.0004
       targetProgress.current = Math.max(0, Math.min(1, targetProgress.current + delta))
     }
@@ -39,7 +48,6 @@ export function useScrollAnimation({ totalSections = 5, damping = 0.08 } = {}) {
 
     const tick = () => {
       const diff = targetProgress.current - progress.current
-      // Snappier spring: higher damping, lower decay
       velocity.current = velocity.current * 0.75 + diff * damping
       progress.current = Math.max(0, Math.min(1, progress.current + velocity.current))
       rafId.current = requestAnimationFrame(tick)
@@ -58,5 +66,5 @@ export function useScrollAnimation({ totalSections = 5, damping = 0.08 } = {}) {
     }
   }, [damping])
 
-  return { progress, velocity, setActive }
+  return { progress, velocity, setActive, goToSection, nextSection, prevSection }
 }

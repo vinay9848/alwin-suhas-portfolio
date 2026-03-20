@@ -49,7 +49,7 @@ export default function AboutSection({ scrollProgress, isMobile }) {
     <div className="section-overlay interactive" style={{ opacity }}>
       <div className={`absolute ${
         isMobile
-          ? 'inset-x-0 bottom-8 px-6 text-center'
+          ? 'inset-x-0 bottom-16 px-4 text-center'
           : 'right-[6%] md:right-[10%] top-1/2 -translate-y-1/2 max-w-sm text-right'
       }`}
         style={{ background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(16px)', padding: isMobile ? '20px' : '28px', borderRadius: '6px', boxShadow: '0 4px 30px rgba(0,0,0,0.08)' }}
@@ -67,11 +67,11 @@ export default function AboutSection({ scrollProgress, isMobile }) {
           {stats.map((stat) => (
             <div key={stat.label} className={isMobile ? 'text-center' : 'text-right'}>
               <p className={`font-display font-light tracking-tight ${
-                isMobile ? 'text-2xl' : 'text-3xl md:text-4xl'
+                isMobile ? 'text-3xl' : 'text-3xl md:text-4xl'
               }`} style={{ color: '#0A0A0E' }}>
                 {stat.value}
               </p>
-              <p className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#2A2A30' }}>
+              <p className="font-mono text-[10px] md:text-[9px] tracking-[0.2em] uppercase mt-1" style={{ color: '#2A2A30' }}>
                 {stat.label}
               </p>
             </div>
@@ -81,8 +81,8 @@ export default function AboutSection({ scrollProgress, isMobile }) {
         <div className={`space-y-2 md:space-y-3 mb-6 md:mb-10 ${isMobile ? 'max-w-xs mx-auto' : ''}`}>
           {skills.map((skill) => (
             <div key={skill.name} className="flex items-center gap-2 md:gap-3">
-              <span className={`font-mono text-[8px] md:text-[9px] tracking-wider uppercase text-right ${
-                isMobile ? 'w-20' : 'w-28'
+              <span className={`font-mono text-[10px] md:text-[9px] tracking-wider uppercase text-right ${
+                isMobile ? 'w-24' : 'w-28'
               }`} style={{ color: '#1A1A20' }}>
                 {skill.name}
               </span>
@@ -100,7 +100,7 @@ export default function AboutSection({ scrollProgress, isMobile }) {
         </div>
 
         <p className={`font-body leading-relaxed ${
-          isMobile ? 'text-xs text-center' : 'text-sm text-right'
+          isMobile ? 'text-sm text-center' : 'text-sm text-right'
         }`} style={{ color: '#1A1A20' }}>
           Crafting visual narratives through light,
           {!isMobile && <br />}

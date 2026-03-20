@@ -24,7 +24,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
     <div className="fixed inset-0 z-10 flex items-center pointer-events-none" style={{ opacity }}>
       <div className={`pointer-events-auto ${
         isMobile
-          ? 'mx-auto text-center px-6 max-w-xs'
+          ? 'mx-auto text-center px-5 max-w-sm'
           : 'ml-auto mr-[6%] md:mr-[10%] text-right max-w-lg'
       }`}>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
@@ -41,7 +41,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
           {/* Name — dark on light */}
           <motion.h1
             className={`font-display tracking-[0.08em] font-light leading-[0.95] ${
-              isMobile ? 'text-4xl' : 'text-5xl md:text-7xl lg:text-8xl'
+              isMobile ? 'text-5xl' : 'text-5xl md:text-7xl lg:text-8xl'
             }`}
             style={{ color: '#1A1A1E' }}
             initial={{ opacity: 0, y: isMobile ? 20 : 0, x: isMobile ? 0 : 30 }}
@@ -54,7 +54,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
           {/* Role — copper accent */}
           <motion.p
             className={`font-mono uppercase mt-3 md:mt-5 ${
-              isMobile ? 'text-[9px] tracking-[0.4em]' : 'text-[10px] md:text-xs tracking-[0.5em]'
+              isMobile ? 'text-xs tracking-[0.4em]' : 'text-[10px] md:text-xs tracking-[0.5em]'
             }`}
             style={{ color: '#B07C4F' }}
             initial={{ opacity: 0 }}
@@ -67,7 +67,7 @@ export default function HeroText({ scrollProgress, isMobile }) {
           {/* Quote */}
           <motion.p
             className={`font-body font-light italic mt-4 md:mt-6 ${
-              isMobile ? 'text-xs' : 'text-sm md:text-base'
+              isMobile ? 'text-sm' : 'text-sm md:text-base'
             }`}
             style={{ color: '#9A9A9F' }}
             initial={{ opacity: 0 }}

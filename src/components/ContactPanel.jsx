@@ -71,7 +71,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
     <div className="section-overlay interactive" style={{ opacity }}>
       <div className={`absolute ${
         isMobile
-          ? 'inset-x-0 bottom-6 px-6 text-center'
+          ? 'inset-x-0 bottom-16 px-4 text-center'
           : 'left-[6%] md:left-[10%] top-1/2 -translate-y-1/2 max-w-sm'
       }`}
         style={{ background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(16px)', padding: isMobile ? '20px' : '28px', borderRadius: '6px', boxShadow: '0 4px 30px rgba(0,0,0,0.08)' }}
@@ -86,11 +86,11 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
         </div>
 
         <h2 className={`font-display font-light mb-1 md:mb-2 tracking-wide ${
-          isMobile ? 'text-xl' : 'text-2xl md:text-3xl'
+          isMobile ? 'text-2xl' : 'text-2xl md:text-3xl'
         }`} style={{ color: '#0A0A0E' }}>
           Available for projects.
         </h2>
-        <p className={`font-body mb-4 md:mb-8 ${isMobile ? 'text-xs' : 'text-sm'}`} style={{ color: '#2A2A30' }}>
+        <p className={`font-body mb-4 md:mb-8 ${isMobile ? 'text-sm' : 'text-sm'}`} style={{ color: '#2A2A30' }}>
           Let's create something cinematic.
         </p>
 
@@ -104,18 +104,18 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
               className={`group flex items-center gap-3 border border-[#1A1A1E]/[0.15] bg-white/50
                          hover:border-[#B07C4F]/40 hover:bg-white/80
                          transition-all duration-500 ${
-                isMobile ? 'py-2.5 px-3' : 'py-3 px-4'
+                isMobile ? 'py-3 px-4' : 'py-3 px-4'
               }`}
             >
               <span className="text-[#9A9A9F] group-hover:text-[#B07C4F] transition-colors duration-300">
                 {link.icon}
               </span>
               <div className="text-left">
-                <span className="font-mono text-[8px] tracking-[0.2em] uppercase block" style={{ color: '#2A2A30' }}>
+                <span className="font-mono text-[10px] md:text-[8px] tracking-[0.2em] uppercase block" style={{ color: '#2A2A30' }}>
                   {link.label}
                 </span>
                 <span className={`font-body group-hover:text-[#1A1A1E] transition-colors duration-300 ${
-                  isMobile ? 'text-xs' : 'text-sm'
+                  isMobile ? 'text-sm' : 'text-sm'
                 }`} style={{ color: '#1A1A20' }}>
                   {link.value}
                 </span>
