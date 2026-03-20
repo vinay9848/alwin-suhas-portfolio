@@ -7,8 +7,8 @@ export const projects = [
     role: 'Cinematographer',
     tools: ['Cinema Camera', 'Prime Lenses', 'DaVinci Resolve'],
     description: 'A powerful cinematic short film blending raw emotion with striking visual storytelling — capturing intensity and atmosphere through deliberate camera work and natural light.',
-    video: 'https://drive.google.com/file/d/1aJ1gDLeAa4HZJJWnUY2yP40V8Y1gsgsb/preview',
-    thumbnail: '/assets/images/project1.jpg',
+    video: './assets/final-out.mp4',
+    thumbnail: './assets/veera-dheera-sooran.avif',
     gradient: ['#C2A878', '#8B6D3F'],
   },
   {
@@ -19,8 +19,8 @@ export const projects = [
     role: 'Cinematographer',
     tools: ['Cinema Camera', 'Gimbal', 'Color Grading'],
     description: 'A visually driven narrative exploring human connection and conflict through bold compositions, moody lighting, and cinematic pacing.',
-    video: '/assets/videos/project2.mp4',
-    thumbnail: '/assets/images/project2.jpg',
+    video: './assets/final-out.mp4',
+    thumbnail: './assets/kara.jpeg',
     gradient: ['#6C7CFF', '#3A2FA0'],
   },
 ]

@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
+# Large video files - host externally
+public/assets/final-out.mp4
 dist-ssr
 *.local
 
