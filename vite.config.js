@@ -7,5 +7,6 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: '/alwin-suhas-portfolio/',
   assetsInclude: ['**/*.glb', '**/*.gltf', '**/*.hdr'],
 })
