@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 const SHOWREEL_URL = 'https://drive.google.com/file/d/1aJ1gDLeAa4HZJJWnUY2yP40V8Y1gsgsb/view?pli=1'
 
 export default function ShowreelOverlay({ scrollProgress, isMobile }) {
-  const [opacity, setOpacity] = useState(0)
-  const [visible, setVisible] = useState(false)
+  const containerRef = useRef(null)
 
   useEffect(() => {
     let raf
     const tick = () => {
+      const el = containerRef.current
+      if (!el) { raf = requestAnimationFrame(tick); return }
       const p = scrollProgress?.current ?? 0
       const fadeIn = Math.min(1, Math.max(0, (p - 0.18) * 6))
       const fadeOut = Math.min(1, Math.max(0, (0.45 - p) * 5))
-      const newOpacity = fadeIn * fadeOut
-      setOpacity(newOpacity)
-      setVisible(newOpacity > 0.01)
+      const o = fadeIn * fadeOut
+      el.style.opacity = o
+      el.style.display = o < 0.01 ? 'none' : 'flex'
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [scrollProgress])
 
-  if (!visible) return null
-
   return (
-    <div className="fixed inset-0 z-20 flex items-end justify-center pointer-events-none"
-      style={{ opacity, paddingBottom: isMobile ? '24px' : '48px' }}
+    <div ref={containerRef}
+      className="fixed inset-0 z-20 flex items-end justify-center pointer-events-none"
+      style={{ display: 'none', paddingBottom: isMobile ? '24px' : '48px' }}
     >
       <a
         href={SHOWREEL_URL}
@@ -40,7 +40,6 @@ export default function ShowreelOverlay({ scrollProgress, isMobile }) {
           cursor: 'pointer',
         }}
       >
-        {/* Play icon */}
         <div className="w-8 h-8 rounded-full flex items-center justify-center"
           style={{ background: 'rgba(176,124,79,0.2)' }}
         >

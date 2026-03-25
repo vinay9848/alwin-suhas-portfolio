@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react'
-import { personalInfo } from '../data/projects'
+import { useEffect, useRef } from 'react'
 
 export default function ContactPanel({ scrollProgress, isMobile }) {
-  const [opacity, setOpacity] = useState(0)
-  const [visible, setVisible] = useState(false)
+  const containerRef = useRef(null)
 
   useEffect(() => {
     let raf
     const tick = () => {
+      const el = containerRef.current
+      if (!el) { raf = requestAnimationFrame(tick); return }
       const p = scrollProgress?.current ?? 0
-      const newOpacity = Math.max(0, Math.min(1, (p - 0.72) * 5.5))
-      setOpacity(newOpacity)
-      setVisible(newOpacity > 0.01)
+      const o = Math.max(0, Math.min(1, (p - 0.72) * 5.5))
+      el.style.opacity = o
+      el.style.display = o < 0.01 ? 'none' : ''
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [scrollProgress])
-
-  if (!visible) return null
 
   const contactLinks = [
     {
@@ -80,7 +78,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
   ]
 
   return (
-    <div className="section-overlay interactive" style={{ opacity }}>
+    <div ref={containerRef} className="section-overlay interactive" style={{ display: 'none' }}>
       <div className={`absolute ${
         isMobile
           ? 'inset-x-0 bottom-16 px-4 text-center'
@@ -88,7 +86,7 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
       }`}
         style={{ background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(16px)', padding: isMobile ? '20px' : '28px', borderRadius: '6px', boxShadow: '0 4px 30px rgba(0,0,0,0.08)' }}
       >
-        <div className={`mb-4 md:mb-8`}>
+        <div className="mb-4 md:mb-8">
           <div className={`mb-2 md:mb-3 h-px w-10 md:w-12 bg-gradient-to-r from-[#4A6FA5] to-transparent ${
             isMobile ? 'mx-auto' : ''
           }`} />
@@ -111,8 +109,8 @@ export default function ContactPanel({ scrollProgress, isMobile }) {
             <a
               key={link.label}
               href={link.href}
-              target={link.label === 'Instagram' ? '_blank' : undefined}
-              rel={link.label === 'Instagram' ? 'noopener noreferrer' : undefined}
+              target={link.label === 'Instagram' || link.label === 'Photos' ? '_blank' : undefined}
+              rel={link.label === 'Instagram' || link.label === 'Photos' ? 'noopener noreferrer' : undefined}
               className={`group flex items-center gap-3 border border-[#1A1A1E]/[0.15] bg-white/50
                          hover:border-[#B07C4F]/40 hover:bg-white/80
                          transition-all duration-500 ${

@@ -1,29 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 export default function HeroText({ scrollProgress, isMobile }) {
-  const [opacity, setOpacity] = useState(1)
-  const [visible, setVisible] = useState(true)
+  const containerRef = useRef(null)
 
   useEffect(() => {
     let raf
     const tick = () => {
+      const el = containerRef.current
+      if (!el) { raf = requestAnimationFrame(tick); return }
       const p = scrollProgress?.current ?? 0
-      const newOpacity = Math.max(0, 1 - p * 6)
-      setOpacity(newOpacity)
-      setVisible(newOpacity > 0.01)
+      const o = Math.max(0, 1 - p * 6)
+      el.style.opacity = o
+      el.style.display = o < 0.01 ? 'none' : 'flex'
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [scrollProgress])
 
-  if (!visible) return null
-
   return (
-    <div className={`fixed inset-0 z-10 flex pointer-events-none ${
+    <div ref={containerRef} className={`fixed inset-0 z-10 pointer-events-none ${
       isMobile ? 'items-end pb-4' : 'items-center'
-    }`} style={{ opacity }}>
+    }`} style={{ display: 'flex' }}>
       <div className={`pointer-events-auto ${
         isMobile
           ? 'mx-auto text-center px-5 max-w-sm py-6 rounded-xl'
@@ -37,7 +36,6 @@ export default function HeroText({ scrollProgress, isMobile }) {
         } : {}}
       >
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
-          {/* Copper accent line */}
           <motion.div
             className={`mb-4 md:mb-6 h-px bg-gradient-to-l from-[#B07C4F] to-transparent ${
               isMobile ? 'mx-auto' : 'ml-auto'
@@ -47,7 +45,6 @@ export default function HeroText({ scrollProgress, isMobile }) {
             transition={{ duration: 1.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           />
 
-          {/* Name — dark on light */}
           <motion.h1
             className={`font-display tracking-[0.08em] font-light leading-[0.95] ${
               isMobile ? 'text-5xl' : 'text-5xl md:text-7xl lg:text-8xl'
@@ -60,7 +57,6 @@ export default function HeroText({ scrollProgress, isMobile }) {
             ALWIN<br />SUHAS
           </motion.h1>
 
-          {/* Role — copper accent */}
           <motion.p
             className={`font-mono uppercase mt-3 md:mt-5 ${
               isMobile ? 'text-xs tracking-[0.4em]' : 'text-[10px] md:text-xs tracking-[0.5em]'
@@ -73,7 +69,6 @@ export default function HeroText({ scrollProgress, isMobile }) {
             Assistant Cinematographer
           </motion.p>
 
-          {/* Quote */}
           <motion.p
             className={`font-body font-light italic mt-4 md:mt-6 ${
               isMobile ? 'text-sm' : 'text-sm md:text-base'
@@ -86,7 +81,6 @@ export default function HeroText({ scrollProgress, isMobile }) {
             "Life experience is always more important than technical knowledge." — Roger Deakins
           </motion.p>
 
-          {/* Bottom line */}
           <motion.div
             className={`mt-4 md:mt-6 h-px bg-gradient-to-l from-[#B07C4F]/30 to-transparent ${
               isMobile ? 'mx-auto' : 'ml-auto'
@@ -96,7 +90,6 @@ export default function HeroText({ scrollProgress, isMobile }) {
             transition={{ duration: 1.5, delay: 0.6 }}
           />
 
-          {/* Scroll hint */}
           <motion.div
             className={`mt-8 md:mt-14 flex flex-col ${isMobile ? 'items-center' : 'items-end'}`}
             initial={{ opacity: 0 }}

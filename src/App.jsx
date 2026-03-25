@@ -11,6 +11,7 @@ import ScrollProgress from './ui/ScrollProgress'
 import SectionIndicator from './ui/SectionIndicator'
 import LoadingScreen from './components/LoadingScreen'
 import CustomCursor from './components/CustomCursor'
+import FPSCounter from './ui/FPSCounter'
 import { useScrollAnimation } from './hooks/useScrollAnimation'
 import { useMobile } from './hooks/useMobile'
 
@@ -54,6 +55,7 @@ function App() {
       <LoadingScreen loaded={loaded} />
 
       {!isMobile && <CustomCursor />}
+      <FPSCounter />
 
       {introComplete && (
         <>
